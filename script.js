@@ -14,26 +14,41 @@ function criarBG(){
     context.fillRect(0, 0, 16 * box, 16 * box); // Rect trabalha o tamanho, 4 propiedades, eixos x e y, altura e largura.
 }
 
-function criarCobrinha(){
+function criarCobrinha(){//lógica, cor e tamanho
     for(i=0; i< snake.length; i++){
         context.fillStyle = 'green';
         context.fillRect(snake[i].x, snake[i].y, box, box);
     }
 }
 
+document.addEventListener("keydown", update);//evento listener para iniciar o jogo com o clique do mouse
+
+function update(event){//direção que a cobrinha anda, começando pela direita, sentido horário
+    if(event.keyCode == 37 && direction != "right") direction = "left";
+    if(event.keyCode == 38 && direction != "down") direction = "up";
+    if(event.keyCode == 39 && direction != "left") direction = "right";
+    if(event.keyCode == 40 && direction != "up") direction = "down";
+}
+
 function iniciarJogo(){
-    criarBG();
+    //condições para a cobrinha reaparecer do outro lado quando bater em uma borda
+    if(snake[0].x > 16 * box && direction == "right") snake[0].x = 0;//quando bate do limite de quadradinhos do context.fillRect, ela começa de novo no quadradinho 0
+    if(snake[0].x < 0 && direction == "left") snake[0].x = 16 * box;
+    if(snake[0].y > 16 * box && direction == "down") snake[0].y = 0;
+    if(snake[0].y < 0 && direction == "up") snake[0].y = 16 * box;
+
+    criarBG();//chamou as funções de cima dentro dessa função para quando iniciar o jogo estar tudo ok
     criarCobrinha();
 
-    let snakeX = snake[0].x;
+    let snakeX = snake[0].x;//variáveis da direção que a cobrinha anda no plano cardeal
     let snakeY = snake[0].y;
 
-    if(direction == "right") snakeX += box;
+    if(direction == "right") snakeX += box;//se anda para direita, acrescenta um quadradinho verde á direita - a mesma lógica para os de baixo - no plano cardeal
     if(direction == "left") snakeX -= box;
     if(direction == "up") snakeY -= box;
     if(direction == "down") snakeY += box;
 
-    snake.pop();
+    snake.pop();//retira o ultimo elemento da array snake, para não ficar o quadradinho verde atrás, onde a cobrinha já passou
 
     let newHead = {
         x: snakeX,
