@@ -8,17 +8,26 @@ snake[0] = {
     y: 8* box
 }
 let direction = "right";
+let food = {
+   x: Math.floor(Math.random() * 15 + 1) * box,
+   y: Math.floor(Math.random() * 15 + 1) * box
+}
 
 function criarBG(){
-    context.fillStyle = "lightgreen"; // fillStyle é o estilo do fundo, a cor
+    context.fillStyle = "black"; // fillStyle é o estilo do fundo, a cor
     context.fillRect(0, 0, 16 * box, 16 * box); // Rect trabalha o tamanho, 4 propiedades, eixos x e y, altura e largura.
 }
 
 function criarCobrinha(){//lógica, cor e tamanho
     for(i=0; i< snake.length; i++){
-        context.fillStyle = 'green';
+        context.fillStyle = '#66FFFF';
         context.fillRect(snake[i].x, snake[i].y, box, box);
     }
+}
+
+function drawFood(){
+    context.fillStyle = "gray";
+    context.fillRect(food.x, food.y, box, box);
 }
 
 document.addEventListener("keydown", update);//evento listener para iniciar o jogo com o clique do mouse
@@ -39,6 +48,7 @@ function iniciarJogo(){
 
     criarBG();//chamou as funções de cima dentro dessa função para quando iniciar o jogo estar tudo ok
     criarCobrinha();
+    drawFood();
 
     let snakeX = snake[0].x;//variáveis da direção que a cobrinha anda no plano cardeal
     let snakeY = snake[0].y;
