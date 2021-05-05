@@ -5,9 +5,21 @@ body{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: rgb(4, 3, 99);
+    background-image: url(/uni.jpg);
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     border-style: double;
     color: aliceblue;
+}
+
+h1{
+    background-color: rgb(4, 4, 63);
+    padding: 0px 29.5% 0px 29.5%;
+    border-style:double;
+}
+
+button{
+    padding: 10px;
+    margin-top: 5px;
+    float: right;
 }
 

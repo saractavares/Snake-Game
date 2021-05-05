@@ -13,6 +13,7 @@ let food = {
    y: Math.floor(Math.random() * 15 + 1) * box
 }
 
+
 function criarBG(){
     context.fillStyle = "black"; // fillStyle é o estilo do fundo, a cor
     context.fillRect(0, 0, 16 * box, 16 * box); // Rect trabalha o tamanho, 4 propiedades, eixos x e y, altura e largura.
@@ -30,7 +31,7 @@ function drawFood(){
     context.fillRect(food.x, food.y, box, box);
 }
 
-document.addEventListener("keydown", update);//evento listener para iniciar o jogo com o clique do mouse
+document.addEventListener("keydown", update);//evento listener para mover a cobrinha com o clique do teclado
 
 function update(event){//direção que a cobrinha anda, começando pela direita, sentido horário
     if(event.keyCode == 37 && direction != "right") direction = "left";
