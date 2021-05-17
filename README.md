@@ -1,2 +1,2 @@
 # Snake-Game
-The classic snake game bild with JS
+The classic snake game built with JS
